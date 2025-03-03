@@ -12,11 +12,11 @@ int main()
     TabelaHash *tabelaHash;
 
     printf("\nEscolha a função de hash:\n");
-    printf("1 - Divisão\n2 - Multiplicação\n");
+    printf("1 - Divisao\n2 - Multiplicacao\n");
     scanf("%d", &funcaoHash);
 
-    printf("\nEscolha o método de colisão:\n");
-    printf("1 - Encadeado\n2 - Endereçamento aberto\n");
+    printf("\nEscolha o metodo de colisão:\n");
+    printf("1 - Encadeado\n2 - Enderecamento aberto\n");
     scanf("%d", &metodoColisao);
 
     lerArquivo(&tabelaHash, &tamanhoTabela, funcaoHash, metodoColisao);
@@ -33,7 +33,7 @@ int main()
         printf("4. Buscar Chave\n");
         printf("5. Exibir Fator de Carga\n");
         printf("0. Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -75,7 +75,7 @@ int main()
             break;
 
         default:
-            printf("Opção inválida!");
+            printf("Opção invalida!");
             break;
         }
     } while (opcao != 0);

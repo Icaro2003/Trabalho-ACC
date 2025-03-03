@@ -169,7 +169,7 @@ void removerChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoC
             noAtual = noAtual->proximo;
         }
 
-        printf("Chave %d não encontrada!\n", chave);
+        printf("Chave %d nao encontrada!\n", chave);
     }
     else
     {
@@ -194,7 +194,7 @@ void removerChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoC
             i++;
         }
 
-        printf("Chave %d não encontrada!\n", chave);
+        printf("Chave %d nao encontrada!\n", chave);
     }
 }
 
@@ -211,7 +211,7 @@ void buscarChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoCo
         {
             if (noAtual->chave == chave)
             {
-                printf("Chave %d encontrada no índice %d\nColisões: %d\n", chave, indice, colisoes);
+                printf("Chave %d encontrada no indice %d\nColisoes: %d\n", chave, indice, colisoes);
                 return;
             }
 
@@ -219,7 +219,7 @@ void buscarChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoCo
             colisoes++;
         }
 
-        printf("Chave %d não encontrada!\nColisões: %d\n", chave, colisoes);
+        printf("Chave %d nao encontrada!\nColisoes: %d\n", chave, colisoes);
     }
     else
     {
@@ -231,7 +231,7 @@ void buscarChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoCo
 
             if (tabelaHash->chaves[novoIndice] == chave)
             {
-                printf("Chave %d encontrada no índice %d\nColisões: %d\n", chave, indice, colisoes);
+                printf("Chave %d encontrada no indice %d\nColisoes: %d\n", chave, indice, colisoes);
                 return;
             }
             else if (tabelaHash->chaves[novoIndice] == -1)
@@ -243,7 +243,7 @@ void buscarChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoCo
             colisoes++;
         }
 
-        printf("Chave %d não encontrada!\nColisões: %d\n", chave, colisoes);
+        printf("Chave %d nao encontrada!\nColisoes: %d\n", chave, colisoes);
     }
 }
 
@@ -258,7 +258,7 @@ void imprimirTabelaHash(TabelaHash *tabelaHash, int metodoColisao)
 
     for (int i = 0; i < tabelaHash->tamanho; i++)
     {
-        printf("Índice %d: ", i);
+        printf("Indice %d: ", i);
 
         if (metodoColisao == 1)
         {

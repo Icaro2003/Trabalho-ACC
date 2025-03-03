@@ -9,7 +9,7 @@ FilaPrioridade *criarFilaPrioridade(int capacidade)
 
     if (fp == NULL)
     {
-        printf("Não foi possível alocar memória para a fila de prioridade!");
+        printf("Nao foi possivel alocar memoria para a fila de prioridade!");
         exit(1);
     }
 
@@ -17,7 +17,7 @@ FilaPrioridade *criarFilaPrioridade(int capacidade)
 
     if (fp->elementos == NULL)
     {
-        printf("Não foi possível alocar memória para os elementos da fila!");
+        printf("Nao foi possível alocar memoria para os elementos da fila!");
         free(fp);
         exit(1);
     }
@@ -244,7 +244,7 @@ void lerArquivo(FilaPrioridade **fp, int *capacidade, const char *nomeArquivo)
 
     if (fgets(linha, MAX_LINHA, arquivo) == NULL || sscanf(linha, "%d", &numElementos) != 1)
     {
-        printf("Erro ao ler o número de elementos do arquivo!\n");
+        printf("Erro ao ler o numero de elementos do arquivo!\n");
         fclose(arquivo);
         return;
     }

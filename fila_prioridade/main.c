@@ -22,7 +22,7 @@ int main()
         printf("3. Imprimir fila de prioridade\n");
         printf("4. Alterar prioridade de um elemento\n");
         printf("0. Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -57,6 +57,9 @@ int main()
             break;
         case 3:
             imprimirFilaPrioridade(fp);
+            printf("Aperte ENTER para entrar no menu");
+            getchar();
+            getchar();
             break;
         case 4:
             printf("Digite o nome do elemento: ");
@@ -71,16 +74,16 @@ int main()
             }
             else
             {
-                printf("Elemnto não encontrado!\n");
+                printf("Elemento nao encontrado!\n");
             }
             break;
         case 5:
             break;
         case 0:
-            printf("Saiondo...\n");
+            printf("Saindo...\n");
             break;
         default:
-            printf("Opção incorreta!\n");
+            printf("Opcao incorreta!\n");
             break;
         }
     } while (opcao != 0);
