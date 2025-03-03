@@ -337,7 +337,7 @@ void buscarNoPaiFilho(No *raiz, int chave)
 
     if (no == NULL)
     {
-        printf("No %d não encontrado!", chave);
+        printf("No %d nao encontrado!", chave);
         return;
     }
 
