@@ -25,7 +25,7 @@ int posNoFilhoEsquerdo(int posicao);
 int posNoFilhoDireito(int posicao);
 void reorganizarFilaPrioridadeMaximo(FilaPrioridade *fp, int posicao);
 int inserirElemento(FilaPrioridade *fp, const char *nome, int prioridade);
-ElementoFilaPrioridade maiorElemento(FilaPrioridade *fp);
+ElementoFilaPrioridade removerMaiorElemento(FilaPrioridade *fp);
 void imprimirFilaPrioridade(FilaPrioridade *fp);
 int buscarPosicaoElemento(FilaPrioridade *fp, const char *nome);
 int alterarPrioridade(FilaPrioridade *fp, const char *nome, int novaPrioridade);

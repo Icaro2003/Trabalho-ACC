@@ -8,12 +8,19 @@ int main()
     int opcao, prioridade, capacidade;
     char nome[MAX_STRING];
 
+    printf("Fila de prioridades\n\n");
+
+    printf("Informe a capacidade da fila: ");
+    scanf("%d", &capacidade);
+
+    fp = criarFilaPrioridade(capacidade);
+
     do
     {
-        printf("\nFila de Prioridades\n");
+        printf("\nFuncionaldiades da fila de prioridades\n");
         printf("1. Inserir elementos por arquivo\n");
         printf("2. Inserir elemento\n");
-        printf("3. Extrair elemento de maior prioridade\n");
+        printf("3. Remover elemento de maior prioridade\n");
         printf("4. Imprimir fila de prioridade\n");
         printf("5. Alterar prioridade de um elemento\n");
         printf("0. Sair\n");
@@ -45,7 +52,7 @@ int main()
         case 3:
             if (fp->tamanho > 0)
             {
-                ElementoFilaPrioridade maior = maiorElemento(fp);
+                ElementoFilaPrioridade maior = removerMaiorElemento(fp);
 
                 printf("Maior elemento: \"%s\"\nPrioridade: %d\n", maior.nome, maior.prioridade);
             }

@@ -96,6 +96,7 @@ int inserirElemento(FilaPrioridade *fp, const char *nome, int prioridade)
             return 0;
         }
     }
+    
 
     int pos = fp->tamanho;
     strncpy(fp->elementos[pos].nome, nome, MAX_STRING - 1);
@@ -112,7 +113,7 @@ int inserirElemento(FilaPrioridade *fp, const char *nome, int prioridade)
     return 1;
 }
 
-ElementoFilaPrioridade maiorElemento(FilaPrioridade *fp)
+ElementoFilaPrioridade removerMaiorElemento(FilaPrioridade *fp)
 {
     if (fp->tamanho <= 0)
     {
