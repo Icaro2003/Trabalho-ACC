@@ -139,6 +139,12 @@ void lerArquivo(TabelaHash **tabelaHash, int *tamanhoTabela, int funcaoHash, int
 
 void removerChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoColisao)
 {
+    if (tabelaHash == NULL)
+    {
+        printf("Tabela vazia, não é possível remover!\n");
+        return;
+    }
+
     int indice = hash(chave, funcaoHash, tabelaHash->tamanho);
 
     if (metodoColisao == 1)
@@ -183,7 +189,6 @@ void removerChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoC
             {
                 tabelaHash->chaves[novoIndice] = -1;
                 tabelaHash->numElementos--;
-                printf("Chave removida: %d\n", chave);
                 return;
             }
             else if (tabelaHash->chaves[novoIndice] == -1)
@@ -231,7 +236,7 @@ void buscarChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoCo
 
             if (tabelaHash->chaves[novoIndice] == chave)
             {
-                printf("Chave %d encontrada no indice %d\nColisoes: %d\n", chave, indice, colisoes);
+                printf("Chave %d encontrada no indice %d\nColisoes: %d\n", chave, novoIndice, colisoes);
                 return;
             }
             else if (tabelaHash->chaves[novoIndice] == -1)
@@ -241,6 +246,11 @@ void buscarChave(TabelaHash *tabelaHash, int chave, int funcaoHash, int metodoCo
 
             i++;
             colisoes++;
+
+            if (i >= tabelaHash->tamanho)
+            {
+                break;
+            }
         }
 
         printf("Chave %d nao encontrada!\nColisoes: %d\n", chave, colisoes);
@@ -264,13 +274,25 @@ void imprimirTabelaHash(TabelaHash *tabelaHash, int metodoColisao)
         {
             No *noAtual = tabelaHash->tabela[i];
 
-            while (noAtual)
+            if (noAtual == NULL)
             {
-                printf("%d ", noAtual->chave);
-                noAtual = noAtual->proximo;
+                printf("Vazio\n");
             }
+            else
+            {
+                while (noAtual)
+                {
+                    printf("%d", noAtual->chave);
 
-            printf("\n");
+                    if (noAtual->proximo)
+                    {
+                        printf(" -> ");
+                    }
+
+                    noAtual = noAtual->proximo;
+                }
+                printf("\n");
+            }
         }
         else
         {
@@ -280,7 +302,7 @@ void imprimirTabelaHash(TabelaHash *tabelaHash, int metodoColisao)
             }
             else
             {
-                printf("\n");
+                printf("Vazio\n");
             }
         }
     }

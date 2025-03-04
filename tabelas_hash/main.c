@@ -1,37 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include "tabela_hash.h"
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     int opcao, tamanhoTabela, metodoColisao, funcaoHash, chave;
 
     TabelaHash *tabelaHash;
 
-    printf("\nEscolha a função de hash:\n");
-    printf("1 - Divisao\n2 - Multiplicacao\n");
-    scanf("%d", &funcaoHash);
-
-    printf("\nEscolha o metodo de colisão:\n");
-    printf("1 - Encadeado\n2 - Enderecamento aberto\n");
-    scanf("%d", &metodoColisao);
-
-    lerArquivo(&tabelaHash, &tamanhoTabela, funcaoHash, metodoColisao);
-    printf("Dados do arquivo carregados!\n");
-
-    printf("\n");
+    printf("Tabela Hash\n");
+    
+    int valorCorreto;
 
     do
     {
-        printf("Tabela Hash\n");
-        printf("1. Inserir Manualmente\n");
-        printf("2. Remover\n");
-        printf("3. Exibir Tabela Hash\n");
-        printf("4. Buscar Chave\n");
-        printf("5. Exibir Fator de Carga\n");
+        printf("\nEscolha a funcao de hash:\n");
+        printf("1 - Divisao\n2 - Multiplicacao\n");
+        scanf("%d", &funcaoHash);
+
+        printf("\n");
+
+        printf("Escolha o metodo de colisao:\n");
+        printf("1 - Encadeado\n2 - Enderecamento aberto\n");
+        scanf("%d", &metodoColisao);
+
+        valorCorreto = (funcaoHash < 1 || funcaoHash > 2) || (metodoColisao < 1 || metodoColisao > 2) ? 1 : 0;
+    } while (valorCorreto);
+
+    do
+    {
+        printf("\nFuncionalidades da Tabela Hash\n");
+        printf("1. Inserir elementos por arquivo\n");
+        printf("2. Inserir elementos manualmente\n");
+        printf("3. Remover elementos da tabela\n");
+        printf("4. Exibir Tabela Hash\n");
+        printf("5. Buscar Chave\n");
+        printf("6. Exibir Fator de Carga\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -39,6 +43,10 @@ int main()
         switch (opcao)
         {
         case 1:
+            lerArquivo(&tabelaHash, &tamanhoTabela, funcaoHash, metodoColisao);
+            printf("\nDados do arquivo carregados!\n");
+            break;
+        case 2:
             printf("Digite a chave para inserir na tabela: ");
             scanf("%d", &chave);
 
@@ -51,23 +59,23 @@ int main()
                 inserirEnderecamentoAberto(tabelaHash, chave, funcaoHash);
             }
             break;
-        case 2:
+        case 3:
             printf("Digite a chave para remover da tabela: ");
             scanf("%d", &chave);
             removerChave(tabelaHash, chave, funcaoHash, metodoColisao);
             break;
-        case 3:
+        case 4:
             imprimirTabelaHash(tabelaHash, metodoColisao);
             printf("Aperte ENTER para entrar no menu");
             getchar();
             getchar();
             break;
-        case 4:
+        case 5:
             printf("Digite a chave para buscar na tabela: ");
             scanf("%d", &chave);
             buscarChave(tabelaHash, chave, funcaoHash, metodoColisao);
             break;
-        case 5:
+        case 6:
             printf("Fator de carga da tabela: %g\n", fatorCarga(tabelaHash));
             break;
         case 0:
@@ -75,7 +83,7 @@ int main()
             break;
 
         default:
-            printf("Opção invalida!");
+            printf("Opcao invalida!");
             break;
         }
     } while (opcao != 0);

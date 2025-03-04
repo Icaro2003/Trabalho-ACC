@@ -64,8 +64,8 @@ No *rotacaoDireita(No *y)
     x->direita = y;
     y->esquerda = a2;
 
-    y->altura = valorMaximo(alturaNo(y->esquerda), alturaNo(y->direita) + 1);
-    x->altura = valorMaximo(alturaNo(x->esquerda), alturaNo(x->direita) + 1);
+    y->altura = 1 + valorMaximo(alturaNo(y->esquerda), alturaNo(y->direita));
+    x->altura = 1 + valorMaximo(alturaNo(x->esquerda), alturaNo(x->direita));
 
     return x;
 }
@@ -87,8 +87,8 @@ No *rotacaoEsquerda(No *x)
     y->esquerda = x;
     x->direita = a2;
 
-    x->altura = valorMaximo(alturaNo(x->esquerda), alturaNo(x->direita) + 1);
-    y->altura = valorMaximo(alturaNo(y->esquerda), alturaNo(y->direita) + 1);
+    x->altura = 1 + valorMaximo(alturaNo(x->esquerda), alturaNo(x->direita));
+    y->altura = 1 + valorMaximo(alturaNo(y->esquerda), alturaNo(y->direita));
 
     return y;
 }
@@ -103,12 +103,10 @@ No *inserirNo(No *no, int chave, No *pai)
     if (chave < no->chave)
     {
         no->esquerda = inserirNo(no->esquerda, chave, no);
-        no->esquerda->pai = no;
     }
     else if (chave > no->chave)
     {
         no->direita = inserirNo(no->direita, chave, no);
-        no->direita->pai = no;
     }
     else
     {
@@ -129,13 +127,13 @@ No *inserirNo(No *no, int chave, No *pai)
         return rotacaoEsquerda(no);
     }
 
-    if (fatorB > 1 && chave > no->esquerda->chave)
+    if (fatorB > 1 && fatorBalanceamentoNo(no->esquerda) < 0)
     {
         no->esquerda = rotacaoEsquerda(no->esquerda);
         return rotacaoDireita(no);
     }
 
-    if (fatorB < -1 && chave < no->direita->chave)
+    if (fatorB < -1 && fatorBalanceamentoNo(no->direita) > 0)
     {
         no->direita = rotacaoDireita(no->direita);
         return rotacaoEsquerda(no);
@@ -160,7 +158,8 @@ No *removerNo(No *raiz, int chave)
 {
     if (raiz == NULL)
     {
-        return raiz;
+        printf("No nao encontrado na arvore!");
+        return NULL;
     }
 
     if (chave < raiz->chave)
@@ -194,8 +193,10 @@ No *removerNo(No *raiz, int chave)
             }
             else
             {
-                temp->pai = raiz->pai;
-                *raiz = *temp;
+                raiz->chave = temp->chave;
+                raiz->esquerda = temp->esquerda;
+                raiz->direita = temp->direita;
+                raiz->pai = temp->pai;
             }
 
             free(temp);

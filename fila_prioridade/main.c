@@ -1,26 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include "fila_prioridade.h"
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     FilaPrioridade *fp = NULL;
     int opcao, prioridade, capacidade;
     char nome[MAX_STRING];
 
-    lerArquivo(&fp, &capacidade, "input.txt");
-    printf("Dados carregados com sucesso!\n");
-
     do
     {
         printf("\nFila de Prioridades\n");
-        printf("1. Inserir elemento\n");
-        printf("2. Extrair elemento de maior prioridade\n");
-        printf("3. Imprimir fila de prioridade\n");
-        printf("4. Alterar prioridade de um elemento\n");
+        printf("1. Inserir elementos por arquivo\n");
+        printf("2. Inserir elemento\n");
+        printf("3. Extrair elemento de maior prioridade\n");
+        printf("4. Imprimir fila de prioridade\n");
+        printf("5. Alterar prioridade de um elemento\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -28,6 +23,10 @@ int main()
         switch (opcao)
         {
         case 1:
+            lerArquivo(&fp, &capacidade, "input.txt");
+            printf("Dados carregados com sucesso!\n");
+            break;
+        case 2:
             printf("Digite o nome do elemento: ");
             scanf("%s", nome);
 
@@ -43,7 +42,7 @@ int main()
                 printf("Erro ao inserir elemento!\n");
             }
             break;
-        case 2:
+        case 3:
             if (fp->tamanho > 0)
             {
                 ElementoFilaPrioridade maior = maiorElemento(fp);
@@ -55,13 +54,13 @@ int main()
                 printf("Fila vazia!\n");
             }
             break;
-        case 3:
+        case 4:
             imprimirFilaPrioridade(fp);
             printf("Aperte ENTER para entrar no menu");
             getchar();
             getchar();
             break;
-        case 4:
+        case 5:
             printf("Digite o nome do elemento: ");
             scanf(" %[^\n]", nome);
 
@@ -77,7 +76,7 @@ int main()
                 printf("Elemento nao encontrado!\n");
             }
             break;
-        case 5:
+        case 6:
             break;
         case 0:
             printf("Saindo...\n");
