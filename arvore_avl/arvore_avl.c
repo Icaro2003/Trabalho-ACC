@@ -110,6 +110,7 @@ No *inserirNo(No *no, int chave, No *pai)
     }
     else
     {
+        printf("A chave %d ja existe na arvore!\n", chave);
         return no;
     }
 
